@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Message Application</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <header>
+          <h1>Meme Chat</h1>
+      </header>
+      <section id="service-url">
+          <label for="microservice-url">Micro-service URL:</label>
+          <input type="text" id="microservice-url" name="microservice-url" value="https://8179d200-3d42-4c32-b6be-46fe9c40986e-00-1a4x3rb8zoebl.worf.replit.dev/" placeholder="Enter Micro-service URL here">
+          <button type="button" id="update-url">Update URL</button>
+      </section>
+      <main>
+            <section id="post-section" aria-label="Post a new message">
+                <h2>Post a new message</h2>
+                <input id="username" placeholder="Username (Optional)">
+                <textarea id="new-message" name="message" rows="4" cols="50" placeholder="Enter your message here..."></textarea>
+                <div id="post-btns"> 
+                    <button id="joke-btn" type="button">Write me a joke</button>
+                    <button id="post-msg-btn" type="button">Send</button>
+                </div>
+            </section>
+          <section aria-label="Posted messages">
+              <h2>Posted messages</h2>
+              <ul>
+                  <li>Message 1: Lorem ipsum dolor sit amet...</li>
+                  <li>Message 2: Sed do eiusmod tempor incididunt...</li>
+                  <li>Message 3: Ut labore et dolore magna aliqua...</li>
+                  <li>Message 4: Ut enim ad minim veniam...</li>
+                  <li>Message 5: Duis aute irure dolor in reprehenderit...</li>
+              </ul>
+          </section>
+      </main>
+  </body>
+  <script src="script.js"></script>
+</html>
