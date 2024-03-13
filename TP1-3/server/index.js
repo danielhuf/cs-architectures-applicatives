@@ -32,7 +32,7 @@ app.get("/test/*", function(req, res) {
 	// res.send({"a": 1, "b" : 2});
 	// res.send(["Hello", "World"]);
 	// res.send(42);
-	res.send(req.url.substr(6));
+	res.send({"msg": req.url.substr(6)});
 });
 
 app.get('/blah*', function(req, res) {
@@ -44,19 +44,21 @@ app.get('/cpt/query', function(req, res) {
 });
 
 app.get('/cpt/inc', function(req, res) {
-	var v = req.query.v;
+    const queryParams = Object.keys(req.query);
 
-	if (!v) {
-		counter++;
-		res.json({ "code": 0 });
-	} else {
-		if (v.match(/^-?\d+$/)) {
-			counter += parseInt(v, 10);
-			res.json({ "code": 0 });
-		} else {
-			res.json({ "code": -1 });
-		}
-	}
+    if (queryParams.length === 0) {
+        counter++;
+        res.json({ "code": 0 });
+    } else if (queryParams.length === 1 && queryParams.includes('v')) {
+        if (req.query.v.match(/^-?\d+$/)) {
+            counter += parseInt(req.query.v, 10);
+            res.json({ "code": 0 });
+        } else {
+            res.json({ "code": -1 });
+        }
+    } else {
+        res.json({ "code": -1 });
+    }
 });
 
 // ======================================== APPLICATION ========================================
