@@ -1,1 +1,0 @@
-curl --data-binary "@{filePath}" -X POST "https://gonzalezhuf-fa.azurewebsites.net/api/ResizeHttpTrigger?w=100&h=100" -v > call_output.jpeg
