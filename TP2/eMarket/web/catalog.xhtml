@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <link href="monstyle.css" rel="stylesheet" type="text/css" />
+        <title>Catalog</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form>
+                    <ul id="nav">
+                        <li>
+                            <a class="logo">
+                                eMarket
+                            </a>
+                        </li>
+                        <li>
+                            <h:commandLink action="goToIndex">
+                                <h:outputText value="Retour à l'accueil"/>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="goToShoppingCart">
+                                <h:outputText value="Votre panier"/>
+                            </h:commandLink>
+                        </li>
+                    </ul>
+            </h:form>
+            <div class="padded">
+                <h1>Catalogue</h1>
+                <h:outputText value="Regardez nos produits ci-dessous:"/>
+                <hr/>
+                <h:panelGroup layout="block" rendered="#{not empty catalogManager.products}">
+                    <ui:repeat value="#{catalogManager.products}" var="product">
+                        <h:panelGroup layout="block">
+                            <div class="card">
+                                <h:graphicImage value="#{product.image}" alt="Product image" styleClass="card-img-top"/>
+                                <div class="card-content">
+                                    <h:outputText value="#{product.name}" styleClass="card-title"/>
+                                    <h:outputText value="€ #{product.price}" styleClass="card-text"/>
+                                </div>
+                                <h:form>
+                                    <h:commandButton value="Ajouter au panier" action="#{shoppingCartManager.addToCart}" styleClass="btn btn-primary"> 
+                                        <f:setPropertyActionListener value="#{product}" target="#{shoppingCartManager.prodToAdd}" />
+                                    </h:commandButton>
+                                </h:form>
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
+            </div>
+        </f:view>
+    </h:body>
+</html>
